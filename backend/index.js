@@ -54,7 +54,6 @@ app.use(cors());
 app.use(morgan("combined"));
 
 ///////////////////// Init Array de Compras. (Simulo una Base de datos)
-let createdAt = new Date();
 
 const compras = [
     {
@@ -63,7 +62,7 @@ const compras = [
         "products": ["100","300","400","500","600","700","800"],
         "amount": 10000,
         "paymentMethod": "Credit Card",
-        "createdAt": createdAt
+        "createdAt": mostrarFecha()
         
     },
     {
@@ -72,7 +71,7 @@ const compras = [
       "products": ["100","300","400","500","600","700","800"],
       "amount": 3000,
       "paymentMethod": "Cash",
-      "createdAt":createdAt
+      "createdAt":mostrarFecha()
     }
 ];
 
@@ -106,7 +105,9 @@ app.post("/compras/", function (req, res) {
       "clientId": req.body.clientId,
       "products": req.body.products,
       "amount": req.body.amount,
-      "paymentMethod": req.body.paymentMethod
+      "paymentMethod": req.body.paymentMethod,
+      "createdAt": mostrarFecha()
+
   }
   let compraPush = compras.push(NEWCOMPRA);
 
@@ -128,7 +129,8 @@ app.put("/compras/:id", function (req, res) {
       "clientId": req.body.clientId,
       "products": req.body.products,
       "amount": req.body.amount,
-      "paymentMethod": req.body.paymentMethod
+      "paymentMethod": req.body.paymentMethod,
+      "createdAt": mostrarFecha()
   }
   compras.forEach(function(compra, i){
     if(compra.id == COMPRAID){
@@ -160,8 +162,11 @@ app.delete("/compras/:id", function (req, res) {
 });
 
 
-
-
+function mostrarFecha(){
+  let createdAt = new Date();
+  let fecha = `${createdAt.getDate()}/${createdAt.getMonth()+1}/${createdAt.getUTCFullYear()}`;
+  return fecha;
+}
 
 
 
