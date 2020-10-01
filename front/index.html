@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Maratón</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Compra</h1>
+    <h2>Compras</h2>
     <ul class="compras-list"></ul>
+    <h2>Compra</h2>
+    <ul class="compra-id"></ul>
 
     <h2>Crear o reemplazar compra</h2>
     <form action="#" class="formCompra">
-    <input type="text" name="id" class="id">
-    <input type="text" name="clientId" class="clientId">
-    <input type="text" name="products" class="products">
-    <input type="text" name="amount" class="amount">
-    <input type="text" name="paymentMethod" class="paymentMethod">
+        Id: <input type="text" name="id" class="id"><br><br>
+        Cliente: <input type="text" name="clientId" class="clientId"><br><br>
+        Productos: <input type="text" name="products" class="products"><br><br>
+        Monto: <input type="text" name="amount" class="amount"><br><br>
+        Metodo de pago: <input type="text" name="paymentMethod" class="paymentMethod"><br>
+        <button type="submit">Enviar</button>
+
     </form>
     
 
-    <script src="/front/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

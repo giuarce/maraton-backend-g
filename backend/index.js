@@ -77,7 +77,7 @@ const compras = [
 
 //////////////////// Defino Rutas, me baso en el modelo REST
 app.get("/compras", function (req, res) {
-  res.status(200).json({ compras });
+  res.status(200).json({compras});
 });
 
 app.get("/compras/:id", function (req, res) {
@@ -86,11 +86,11 @@ app.get("/compras/:id", function (req, res) {
   compras.forEach(function(compra){
     if(compra.id == id){
       compraEncontrada = compra;
-      return res.status(200).send({compra:compraEncontrada});
+      return res.status(200).json({compra:compraEncontrada});
     }
   });
 
-  res.status(404).send({"message":"Compra Not Found - 404"});
+  res.status(404).json({"message":"Compra Not Found - 404"});
 
 });
 
