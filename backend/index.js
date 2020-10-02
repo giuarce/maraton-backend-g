@@ -76,13 +76,19 @@ const compras = [
 ];
 
 //////////////////// Defino Rutas, me baso en el modelo REST
+
+//GET 
 app.get("/compras", function (req, res) {
   res.status(200).json({compras});
 });
 
+
+// GET by ID
 app.get("/compras/:id", function (req, res) {
   const id = req.params.id;
+
   let compraEncontrada = undefined;
+
   compras.forEach(function(compra){
     if(compra.id == id){
       compraEncontrada = compra;
@@ -95,6 +101,7 @@ app.get("/compras/:id", function (req, res) {
 });
 
 
+//POST
 app.post("/compras/", function (req, res) {
   if(!req.body || !req.body.clientId || !req.body.products || !req.body.amount || !req.body.paymentMethod) {
     return res.status(400).send({"mensaje":"no carga"});
@@ -118,6 +125,7 @@ app.post("/compras/", function (req, res) {
 });
 
 
+//PUT
 app.put("/compras/:id", function (req, res) {
   if(!req.body || !req.body.clientId || !req.body.products || !req.body.amount || !req.body.paymentMethod) {
     return res.status(400).send({"mensaje":"no carga"});
@@ -145,6 +153,7 @@ app.put("/compras/:id", function (req, res) {
 });
 
 
+//DELETE
 app.delete("/compras/:id", function (req, res) {
   const COMPRAID = req.params.id;
   let compraEliminada = null;
@@ -162,6 +171,8 @@ app.delete("/compras/:id", function (req, res) {
 });
 
 
+
+//Función que me muestra fecha
 function mostrarFecha(){
   let createdAt = new Date();
   let fecha = `${createdAt.getDate()}/${createdAt.getMonth()+1}/${createdAt.getUTCFullYear()}`;
@@ -169,9 +180,35 @@ function mostrarFecha(){
 }
 
 
-
 //////////////////// Ahora que tengo todo definido y creado, levanto el servicio escuchando peticiones en el puerto
 app.listen(PORT, function () {
   console.log(`Maraton Guayerd running on PORT: ${PORT}\n\n`);
 });
 
+
+
+//Ejercicio 6
+/*
+app.post("/compras/", function (req, res) {
+  if(req.body || req.body.clientId || req.body.products || req.body.amount || req.body.paymentMethod) {
+  let id = compras.length;
+  const NEWCOMPRA = {
+    "id":req.body.id,
+      "clientId": req.body.clientId,
+      "products": req.body.products,
+      "amount": req.body.amount,
+      "paymentMethod": req.body.paymentMethod,
+      "createdAt": mostrarFecha()
+
+  }
+  let compraPush = compras.push(NEWCOMPRA);
+
+
+
+  //201 ==> OK CREATED
+  return res.status(201).send({"compra":NEWCOMPRA});  
+  }else{
+    res.status(400).send({"mensaje":"no carga"});
+  }
+});
+*/
