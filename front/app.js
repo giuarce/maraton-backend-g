@@ -1,5 +1,5 @@
 // GET de todas las compras
-const PORT = 'http://localhost:3001/compras';
+const PORT = '/compras';
 
     fetch(PORT,{
         headers:{
